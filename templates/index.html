@@ -1,0 +1,237 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        select, input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        #question {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        #answer-form {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>GenAI Question Evaluation ChatBot</h1>
+
+    <form id="question-form">
+        <label for="topic">Select a Topic:</label>
+        <select id="topic" required>
+            <option value="" disabled selected>Select a topic</option>
+            <option value="Geography">Geography</option>
+            <option value="Health">Health</option>
+            <option value="Sports">Sports</option>
+        </select>
+        <button type="submit">Generate Question</button>
+    </form>
+
+    <div id="question"></div>
+
+    <div id="answer-form">
+        <h2>Evaluate Your Answer</h2>
+        <form id="evaluation-form">
+            <label for="answer">Your Answer:</label>
+            <input type="text" id="answer" required placeholder="Enter your answer">
+            <button type="submit">Evaluate Answer</button>
+        </form>
+        <div id="evaluation"></div>
+    </div>
+
+    <script>
+        document.getElementById('question-form').onsubmit = async function(event) {
+            event.preventDefault();
+            const topic = document.getElementById('topic').value;
+            const response = await fetch('/generate_question', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ topic })
+            });
+            const data = await response.json();
+            document.getElementById('question').innerText = data.question;
+            document.getElementById('answer-form').style.display = 'block';
+        };
+
+        document.getElementById('evaluation-form').onsubmit = async function(event) {
+            event.preventDefault();
+            const question = document.getElementById('question').innerText;
+            const answer = document.getElementById('answer').value;
+            const response = await fetch('/evaluate_answer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question, answer })
+            });
+            const data = await response.json();
+            document.getElementById('evaluation').innerText = data.evaluation;
+        };
+    </script>
+
+</body>
+</html> 
+
+
+
+ -->
+
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>GenAI Question Evaluation ChatBot</title>
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+             margin: 20px;
+             padding: 20px;
+             background-color: #e7f3fe; /* Light blue background */
+         }
+         h1 {
+             color: #0056b3; /* Dark blue color */
+             text-align: center;
+         }
+         form {
+             margin-bottom: 20px;
+         }
+         select, input[type="text"] {
+             width: 300px; /* Increased width */
+             padding: 15px; /* Increased padding */
+             margin: 10px 0; /* Increased margin */
+             border: 1px solid #007bff; /* Blue border */
+             border-radius: 5px;
+             font-size: 16px; /* Larger font size */
+         }
+         button {
+             padding: 12px 20px; /* Increased padding */
+             border: none;
+             border-radius: 5px;
+             background-color: #28a745; /* Green button */
+             color: white;
+             font-size: 16px; /* Larger font size */
+             cursor: pointer;
+             transition: background-color 0.3s ease; /* Smooth transition */
+         }
+         button:hover {
+             background-color: #218838; /* Darker green on hover */
+         }
+         #question {
+             margin-top: 20px;
+             padding: 15px; /* Increased padding */
+             border: 1px solid #007bff; /* Blue border */
+             border-radius: 5px;
+             background-color: #ffffff; /* White background for question */
+             font-size: 18px; /* Larger font size */
+             color: #333; /* Dark text color */
+         }
+         #answer-form {
+             display: none;
+             margin-top: 20px;
+         }
+         #evaluation {
+             margin-top: 20px;
+             padding: 15px;
+             border: 1px solid #28a745; /* Green border for evaluation */
+             border-radius: 5px;
+             background-color: #ffffff; /* White background for evaluation */
+             color: #333; /* Dark text color */
+             font-size: 18px; /* Larger font size */
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <h1>GenAI Question Evaluation ChatBot</h1>
+ 
+     <form id="question-form">
+         <label for="topic">Select a Topic:</label>
+         <select id="topic" required>
+             <option value="" disabled selected>Select a topic</option>
+             <option value="Geography">Geography</option>
+             <option value="Health">Health</option>
+             <option value="Sports">Sports</option>
+         </select>
+         <button type="submit">Generate Question</button>
+     </form>
+ 
+     <div id="question"></div>
+ 
+     <div id="answer-form">
+         <h2>Evaluate Your Answer</h2>
+         <form id="evaluation-form">
+             <label for="answer">Your Answer:</label>
+             <input type="text" id="answer" required placeholder="Enter your answer">
+             <button type="submit">Evaluate Answer</button>
+         </form>
+         <div id="evaluation"></div>
+     </div>
+ 
+     <script>
+         document.getElementById('question-form').onsubmit = async function(event) {
+             event.preventDefault();
+             const topic = document.getElementById('topic').value;
+             const response = await fetch('/generate_question', {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify({ topic })
+             });
+             const data = await response.json();
+             document.getElementById('question').innerText = data.question;
+             document.getElementById('answer-form').style.display = 'block';
+         };
+ 
+         document.getElementById('evaluation-form').onsubmit = async function(event) {
+             event.preventDefault();
+             const question = document.getElementById('question').innerText;
+             const answer = document.getElementById('answer').value;
+             const response = await fetch('/evaluate_answer', {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify({ question, answer })
+             });
+             const data = await response.json();
+             document.getElementById('evaluation').innerText = data.evaluation;
+         };
+     </script>
+ 
+ </body>
+ </html>
+ 
