@@ -118,7 +118,7 @@ Want to contribute? Fork this repo, create a branch, and submit a pull request.
 
 Have questions or feedback? Reach out:  
 
-📧 Email: [pradyumnadigraskar@gmail.com](mailto:pradyumnadigraskar@gmail.com)  
+📧 Email: [pradyumnadigraskar11@gmail.com](mailto:pradyumnadigraskar@gmail.com)  
 🌐 [GitHub](https://github.com/pradyumnadigraskar)  
 
 ---
